@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<config>
+	
+	<import name="uis"            class="java.util.ArrayList" />
+	<import name="I18N"           class="org.hy.common.I18N" />
+	<import name="iText"          class="org.hy.common.app.Param" />
+    <import name="XMenuBar"       class="org.hy.common.ui.JMenuBar" />
+    <import name="XMenu"          class="org.hy.common.ui.JMenu" />
+    <import name="XMenuItem"      class="org.hy.common.ui.JMenuItem" />
+    <import name="XCBMenuItem"    class="org.hy.common.ui.JCheckBoxMenuItem" />
+	
+	
+	
+	<uis>
+	
+		<!-- 初始化国际化语言信息 -->
+		<I18N id="I18N" this="I18N">
+		
+			<language>cn</language>
+			
+			<iText>
+				<name>xmenuDBManage</name>
+				<value>数据库管理(S)</value>
+			</iText>
+			
+			<iText>
+				<name>xmenuRefurbish</name>
+				<value>刷新表列表</value>
+			</iText>
+			
+			<iText>
+				<name>xmenuCreateTable</name>
+				<value>创建表</value>
+			</iText>
+			
+			<iText>
+				<name>xmenuDropTable</name>
+				<value>删除表</value>
+			</iText>
+			
+			<iText>
+				<name>xmenuEditFamilys</name>
+				<value>编辑表的列族</value>
+			</iText>
+			
+			
+			
+			<iText>
+				<name>xmenuDataMaintenance</name>
+				<value>数据维护(W)</value>
+			</iText>
+			
+			<iText>
+				<name>xmenuExecuteFilePut</name>
+				<value>文件批量put命令导入</value>
+			</iText>
+			
+			<iText>
+				<name>xmenuExecutePut</name>
+				<value>批量put命令执行</value>
+			</iText>
+			
+			<iText>
+				<name>xmenuExportStructure</name>
+				<value>导出表结构</value>
+			</iText>
+			
+			<iText>
+				<name>xmenuExportStructureData</name>
+				<value>导出表结构+数据</value>
+			</iText>
+						
+		</I18N>
+		
+		
+		
+		<I18N this="I18N">
+		
+			<language>en</language>
+			
+			<iText>
+				<name>xmenuDBManage</name>
+				<value>DB Manage(S)</value>
+			</iText>
+			
+			<iText>
+				<name>xmenuRefurbish</name>
+				<value>Refurbish</value>
+			</iText>
+			
+			<iText>
+				<name>xmenuCreateTable</name>
+				<value>Create Table</value>
+			</iText>
+			
+			<iText>
+				<name>xmenuDropTable</name>
+				<value>Drop Table</value>
+			</iText>
+			
+			<iText>
+				<name>xmenuEditFamilys</name>
+				<value>Edit Familys</value>
+			</iText>
+			
+			
+			
+			<iText>
+				<name>xmenuDataMaintenance</name>
+				<value>Data Maintenance(W)</value>
+			</iText>
+			
+			<iText>
+				<name>xmenuExecuteFilePut</name>
+				<value>Execute File Put</value>
+			</iText>
+			
+			<iText>
+				<name>xmenuExecutePut</name>
+				<value>Execute Put</value>
+			</iText>
+			
+			<iText>
+				<name>xmenuExportStructure</name>
+				<value>Export Table Structure</value>
+			</iText>
+						
+		</I18N>
+		
+		
+		
+		<!-- 统一设置国际化语言版本 -->
+		<I18N this="I18N">
+			<language ref="SYS_LANGUAGE" />
+		</I18N>
+		
+		
+	
+		<XMenuBar id="xmMainMenuBar" setter="addMenu">
+		
+			<!-- 数据库管理 -->
+			<XMenu setter="addMenuItem">
+			
+				<text ref="I18N.getIText(xmenuDBManage)" />
+				<mnemonicStr>S</mnemonicStr>
+				
+				<!-- 刷新表列表 -->
+				<XMenuItem id="xmenuRefurbish">
+					<text ref="I18N.getIText(xmenuRefurbish)" />
+					<ctrlKey>R</ctrlKey>
+					
+					<onClickTransaction>
+						<event class="org.hy.hbase.event.MenuRefurbishAction" />
+					</onClickTransaction>
+				</XMenuItem>
+				
+				
+				<call name="addSeparator" />
+				
+				
+				<!-- 创建表 -->
+				<XMenuItem id="xmenuCreateTable">
+					<text ref="I18N.getIText(xmenuCreateTable)" />
+					<ctrlKey>T</ctrlKey>
+					
+					<onClickTransaction>
+						<event class="org.hy.hbase.event.ShowDialogAction">
+							<dialogName>xf_CreateTable</dialogName>
+						</event>
+					</onClickTransaction>
+				</XMenuItem>
+				
+				
+				<!-- 删除表 -->
+				<XMenuItem id="xmenuDropTable">
+					<text ref="I18N.getIText(xmenuDropTable)" />
+					
+					<onClickTransaction>
+						<event class="org.hy.hbase.event.MenuDropTableAction" />
+					</onClickTransaction>
+				</XMenuItem>
+				
+				
+				<!-- 编辑表的列族 -->
+				<XMenuItem id="xmenuEditFamilys">
+					<text ref="I18N.getIText(xmenuEditFamilys)"/>
+					
+					<onClickTransaction>
+						<event class="org.hy.hbase.event.MenuEditFamilyNamesAction">
+							<dialogName>xf_EditFamilys</dialogName>
+						</event>
+					</onClickTransaction>
+				</XMenuItem>
+				
+			</XMenu>
+			
+			
+		
+			<!-- 数据维护 -->
+			<XMenu setter="addMenuItem">
+			
+				<text ref="I18N.getIText(xmenuDataMaintenance)" />
+				<mnemonicStr>W</mnemonicStr>
+				
+				<!-- 文件批量put命令导入 -->
+				<XMenuItem id="xmenuExecuteFilePut">
+					<text ref="I18N.getIText(xmenuExecuteFilePut)" />
+					<ctrlKey>I</ctrlKey>
+					
+					<onClickTransaction>
+						<event class="org.hy.hbase.event.MenuExecuteFilePutAction" />
+					</onClickTransaction>
+				</XMenuItem>
+				
+				
+				<!-- 批量put命令执行 -->
+				<XMenuItem id="xmenuExecutePut">
+					<text ref="I18N.getIText(xmenuExecutePut)" />
+					<ctrlKey>P</ctrlKey>
+					
+					<onClickTransaction>
+						<event class="org.hy.hbase.event.ShowDialogAction">
+							<dialogName>xf_ExecutePut</dialogName>
+						</event>
+					</onClickTransaction>
+				</XMenuItem>
+				
+				
+				<call name="addSeparator" />
+				
+				
+				<!-- 导出表结构 -->
+				<XMenuItem id="xmenuExportStructure">
+					<text ref="I18N.getIText(xmenuExportStructure)" />
+					<ctrlKey>B</ctrlKey>
+					
+					<onClickTransaction>
+						<event class="org.hy.hbase.event.MenuExportStructureAction" />
+					</onClickTransaction>
+				</XMenuItem>
+				
+				
+				<!-- 导出表结构及所有数据 -->
+				<XMenuItem id="xmenuExportStructureData">
+					<text ref="I18N.getIText(xmenuExportStructureData)" />
+					<ctrlKey>D</ctrlKey>
+					
+					<onClickTransaction>
+						<event class="org.hy.hbase.event.MenuExportStructureDataAction" />
+					</onClickTransaction>
+				</XMenuItem>
+				
+			</XMenu>
+		
+		</XMenuBar>
+		
+	</uis>
+	
+</config>

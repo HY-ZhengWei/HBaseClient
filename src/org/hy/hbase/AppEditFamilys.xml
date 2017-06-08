@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<config>
+	
+	<import name="uis"            class="java.util.ArrayList" />
+    
+    <import name="borderLayout"   class="java.awt.BorderLayout" />
+    <import name="flowLayout"     class="java.awt.FlowLayout" />
+    <import name="gridLayout"     class="java.awt.GridLayout" />
+    <import name="XFrame"         class="javax.swing.JDialog" />
+    <import name="XPanel"         class="javax.swing.JPanel" />
+    <import name="XLabel"         class="javax.swing.JLabel" />
+    <import name="XTextField"     class="org.hy.common.ui.JTextField" />
+    <import name="XButton"        class="org.hy.common.ui.JButton" />
+	
+	
+	
+	<uis>
+	
+		<XPanel id="xp_EditFamilys_Info_TableName" setter="add">
+    		<layout>
+				<flowLayout>
+					<alignment ref="this.LEFT" />
+				</flowLayout>
+			</layout>
+			
+			<XLabel>
+				<text>表名称：</text>
+			</XLabel>
+			
+			<XTextField id="xtEditFamilysTableName">
+				<columns>20</columns>
+				<enabled>false</enabled>
+			</XTextField>
+			
+    	</XPanel>
+    	
+    	
+    	
+    	<XPanel id="xp_EditFamilys_Info_Familys" setter="add">
+    		<layout>
+				<flowLayout>
+					<alignment ref="this.LEFT" />
+				</flowLayout>
+			</layout>
+			
+			<XLabel>
+				<text>列族名：</text>
+			</XLabel>
+			
+			<XTextField id="xtEditFamilyNames">
+				<columns>20</columns>
+				<toolTipText>多个列族名间用逗号分隔</toolTipText>
+			</XTextField>
+			
+			<XLabel>
+				<text>
+				<![CDATA[
+					<html>
+					1. 多个列族名间用逗号分隔<br/>
+					2. 向文本框中新增列族名，即为向表新增列族名;<br/>
+					3. 删除文本框中的列族名，即为删除表的列族名
+					</html>
+				]]>
+				</text>
+				<enabled>false</enabled>
+			</XLabel>
+			
+    	</XPanel>
+    	
+    	
+		
+		<XPanel id="xp_EditFamilys_Info">
+		
+			<layout>
+				<borderLayout />
+			</layout>
+		
+			<call name="add">
+				<String ref="borderLayout.NORTH" />
+				<component ref="xp_EditFamilys_Info_TableName" />
+			</call>
+			
+			<call name="add">
+				<String ref="borderLayout.CENTER" />
+				<component ref="xp_EditFamilys_Info_Familys" />
+			</call>
+		
+		</XPanel>
+		
+		
+		
+		<XPanel id="xp_EditFamilys_Edit" setter="add">
+		
+			<layout>
+				<flowLayout>
+					<alignment ref="this.LEFT" />
+				</flowLayout>
+			</layout>
+		
+			<XButton>
+				<text>修改</text>
+				<toolTipText>修改表的列族</toolTipText>
+				
+				<onClickTransaction>
+					<event class="org.hy.hbase.event.EditFamilyNamesAction">
+						<dialogName>xf_EditFamilys</dialogName>
+					</event>
+				</onClickTransaction>
+			</XButton>
+			
+		</XPanel>
+		
+		
+		
+		<XPanel id="xp_EditFamilys_Cancel" setter="add">
+		
+			<layout>
+				<flowLayout>
+					<alignment ref="this.RIGHT" />
+				</flowLayout>
+			</layout>
+		
+			<XButton>
+				<text>取消</text>
+				<toolTipText>取消</toolTipText>
+				
+				<onClickTransaction>
+					<event class="org.hy.hbase.event.CloseDialogAction">
+						<dialogName>xf_EditFamilys</dialogName>
+					</event>
+				</onClickTransaction>
+			</XButton>
+		
+		</XPanel>
+		
+		
+		
+		<!-- 所有按钮面板 -->
+		<XPanel id="xp_EditFamilys_Button">
+		
+			<layout>
+				<borderLayout />
+			</layout>
+		
+			<call name="add">
+				<String ref="borderLayout.CENTER" />
+				<component ref="xp_EditFamilys_Edit" />
+			</call>
+			
+			<call name="add">
+				<String ref="borderLayout.EAST" />
+				<component ref="xp_EditFamilys_Cancel" />
+			</call>
+		
+		</XPanel>
+		
+		
+		
+		<XFrame id="xf_EditFamilys">
+		
+			<title>编辑表的列族</title>
+			<alwaysOnTop>true</alwaysOnTop>
+			<modal>true</modal>
+			<resizable>false</resizable>
+			
+			<call name="this.getContentPane.add">
+				<component ref="xp_EditFamilys_Info" />
+				<object>Center</object>
+			</call>
+			
+			<call name="this.getContentPane.add">
+				<component ref="xp_EditFamilys_Button" />
+				<object>South</object>
+			</call>
+			
+			<call name="this.setSize">
+				<int>300</int>
+				<int>200</int>
+			</call>
+		
+		</XFrame>
+		
+	</uis>
+	
+</config>
