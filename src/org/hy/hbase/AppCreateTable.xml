@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<config>
+	
+	<import name="uis"            class="java.util.ArrayList" />
+    
+    <import name="borderLayout"   class="java.awt.BorderLayout" />
+    <import name="flowLayout"     class="java.awt.FlowLayout" />
+    <import name="gridLayout"     class="java.awt.GridLayout" />
+    <import name="XFrame"         class="javax.swing.JDialog" />
+    <import name="XPanel"         class="javax.swing.JPanel" />
+    <import name="XLabel"         class="javax.swing.JLabel" />
+    <import name="XTextField"     class="org.hy.common.ui.JTextField" />
+    <import name="XButton"        class="org.hy.common.ui.JButton" />
+	
+	
+	
+	<uis>
+	
+		<XPanel id="xp_CreateTable_Info_TableName" setter="add">
+    		<layout>
+				<flowLayout>
+					<alignment ref="this.LEFT" />
+				</flowLayout>
+			</layout>
+			
+			<XLabel>
+				<text>表名称：</text>
+			</XLabel>
+			
+			<XTextField id="xtCreateTableName">
+				<columns>20</columns>
+				<toolTipText>请输入新表的名称</toolTipText>
+			</XTextField>
+			
+    	</XPanel>
+    	
+    	
+    	
+    	<XPanel id="xp_CreateTable_Info_Familys" setter="add">
+    		<layout>
+				<flowLayout>
+					<alignment ref="this.LEFT" />
+				</flowLayout>
+			</layout>
+			
+			<XLabel>
+				<text>列族名：</text>
+			</XLabel>
+			
+			<XTextField id="xtCreateFamilyNames">
+				<columns>20</columns>
+				<toolTipText>多个列族名间用逗号分隔</toolTipText>
+			</XTextField>
+			
+    	</XPanel>
+    	
+    	
+    	
+    	<XPanel id="xp_CreateTable_Info_Hint" setter="add">
+    		<layout>
+				<flowLayout>
+					<alignment ref="this.LEFT" />
+				</flowLayout>
+			</layout>
+			
+			<XLabel>
+				<text>
+				<![CDATA[
+					<html>
+					1. 多个列族名间用逗号分隔<br/>
+					2. 只少要有一个列族名<br/>
+					</html>
+				]]>
+				</text>
+				
+				<enabled>false</enabled>
+			</XLabel>
+			
+    	</XPanel>
+    	
+    	
+		
+		<XPanel id="xp_CreateTable_Info">
+		
+			<layout>
+				<gridLayout>
+					<rows>3</rows>
+					<columns>1</columns>
+				</gridLayout>
+			</layout>
+		
+			<call name="add">
+				<component ref="xp_CreateTable_Info_TableName" />
+			</call>
+			
+			<call name="add">
+				<component ref="xp_CreateTable_Info_Familys" />
+			</call>
+			
+			<call name="add">
+				<component ref="xp_CreateTable_Info_Hint" />
+			</call>
+		
+		</XPanel>
+		
+		
+		
+		<XPanel id="xp_CreateTable_Create" setter="add">
+		
+			<layout>
+				<flowLayout>
+					<alignment ref="this.LEFT" />
+				</flowLayout>
+			</layout>
+		
+			<XButton>
+				<text>创建</text>
+				<toolTipText>创建数据库表</toolTipText>
+				
+				<onClickTransaction>
+					<event class="org.hy.hbase.event.CreateTableAction">
+						<dialogName>xf_CreateTable</dialogName>
+					</event>
+				</onClickTransaction>
+			</XButton>
+			
+		</XPanel>
+		
+		
+		
+		<XPanel id="xp_CreateTable_Cancel" setter="add">
+		
+			<layout>
+				<flowLayout>
+					<alignment ref="this.RIGHT" />
+				</flowLayout>
+			</layout>
+		
+			<XButton>
+				<text>取消</text>
+				<toolTipText>取消</toolTipText>
+				
+				<onClickTransaction>
+					<event class="org.hy.hbase.event.CloseDialogAction">
+						<dialogName>xf_CreateTable</dialogName>
+					</event>
+				</onClickTransaction>
+			</XButton>
+		
+		</XPanel>
+		
+		
+		
+		<!-- 所有按钮面板 -->
+		<XPanel id="xp_CreateTable_Button">
+		
+			<layout>
+				<borderLayout />
+			</layout>
+		
+			<call name="add">
+				<String ref="borderLayout.CENTER" />
+				<component ref="xp_CreateTable_Create" />
+			</call>
+			
+			<call name="add">
+				<String ref="borderLayout.EAST" />
+				<component ref="xp_CreateTable_Cancel" />
+			</call>
+		
+		</XPanel>
+		
+		
+		
+		<XFrame id="xf_CreateTable">
+		
+			<title>创建数据库表</title>
+			<alwaysOnTop>true</alwaysOnTop>
+			<modal>true</modal>
+			<resizable>false</resizable>
+			
+			<call name="this.getContentPane.add">
+				<component ref="xp_CreateTable_Info" />
+				<object>Center</object>
+			</call>
+			
+			<call name="this.getContentPane.add">
+				<component ref="xp_CreateTable_Button" />
+				<object>South</object>
+			</call>
+			
+			<call name="this.setSize">
+				<int>300</int>
+				<int>200</int>
+			</call>
+		
+		</XFrame>
+		
+	</uis>
+	
+</config>

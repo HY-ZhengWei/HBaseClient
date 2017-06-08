@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<config>
+	
+	<import name="uis"            class="java.util.ArrayList" />
+    
+    <import name="borderLayout"   class="java.awt.BorderLayout" />
+    <import name="flowLayout"     class="java.awt.FlowLayout" />
+    <import name="gridLayout"     class="java.awt.GridLayout" />
+    <import name="XFrame"         class="javax.swing.JDialog" />
+    <import name="XPanel"         class="javax.swing.JPanel" />
+    <import name="XScrollPane"    class="javax.swing.JScrollPane" />
+    <import name="XLabel"         class="javax.swing.JLabel" />
+    <import name="XTextArea"      class="javax.swing.JTextArea" />
+    <import name="XButton"        class="org.hy.common.ui.JButton" />
+	
+	
+	
+	<uis>
+	
+		<XPanel id="xp_ExecutePut_Info_Hint" setter="add">
+    		<layout>
+				<gridLayout>
+					<rows>3</rows>
+					<columns>1</columns>
+				</gridLayout>
+			</layout>
+			
+			<XLabel>
+				<text>1. HBase数据库命令区分大小</text>
+			</XLabel>
+			
+			<XLabel>
+				<text>2. 多个命令间用分号分隔</text>
+			</XLabel>
+			
+			<XLabel>
+				<text>3. put 命令格式为：put '表名称' ,'行主键' ,'列族名:列名' ,'值'</text>
+			</XLabel>
+			
+    	</XPanel>
+    	
+    	
+    	
+    	<XTextArea id="xtPutsInfo">
+		</XTextArea>
+    	
+    	
+    	
+    	<XScrollPane id="xp_ExecutePut_Info_Put" setter="add">
+			
+			<horizontalScrollBarPolicy>30</horizontalScrollBarPolicy>
+			
+			<call name="this.getViewport.add">
+				<component ref="xtPutsInfo" />
+			</call>
+		
+		</XScrollPane>	
+
+    	
+		
+		<XPanel id="xp_ExecutePut_Info">
+		
+			<layout>
+				<borderLayout />
+			</layout>
+		
+			<call name="add">
+				<String ref="borderLayout.NORTH" />
+				<component ref="xp_ExecutePut_Info_Hint" />
+			</call>
+			
+			<call name="add">
+				<String ref="borderLayout.CENTER" />
+				<component ref="xp_ExecutePut_Info_Put" />
+			</call>
+		
+		</XPanel>
+		
+		
+		
+		<XPanel id="xp_ExecutePut_Put" setter="add">
+		
+			<layout>
+				<flowLayout>
+					<alignment ref="this.LEFT" />
+				</flowLayout>
+			</layout>
+		
+			<XButton>
+				<text>执行</text>
+				<toolTipText>执行批量put命令</toolTipText>
+				
+				<onClickTransaction>
+					<event class="org.hy.hbase.event.ExecutePutAction">
+						<dialogName>xf_ExecutePut</dialogName>
+					</event>
+				</onClickTransaction>
+			</XButton>
+			
+		</XPanel>
+		
+		
+		
+		<XPanel id="xp_ExecutePut_Cancel" setter="add">
+		
+			<layout>
+				<flowLayout>
+					<alignment ref="this.RIGHT" />
+				</flowLayout>
+			</layout>
+		
+			<XButton>
+				<text>取消</text>
+				<toolTipText>取消</toolTipText>
+				
+				<onClickTransaction>
+					<event class="org.hy.hbase.event.CloseDialogAction">
+						<dialogName>xf_ExecutePut</dialogName>
+					</event>
+				</onClickTransaction>
+			</XButton>
+		
+		</XPanel>
+		
+		
+		
+		<!-- 所有按钮面板 -->
+		<XPanel id="xp_ExecutePut_Button">
+		
+			<layout>
+				<borderLayout />
+			</layout>
+		
+			<call name="add">
+				<String ref="borderLayout.CENTER" />
+				<component ref="xp_ExecutePut_Put" />
+			</call>
+			
+			<call name="add">
+				<String ref="borderLayout.EAST" />
+				<component ref="xp_ExecutePut_Cancel" />
+			</call>
+		
+		</XPanel>
+		
+		
+		
+		<XFrame id="xf_ExecutePut">
+		
+			<title>批量put命令执行</title>
+			<alwaysOnTop>true</alwaysOnTop>
+			<modal>true</modal>
+			<resizable>true</resizable>
+			
+			<call name="this.getContentPane.add">
+				<component ref="xp_ExecutePut_Info" />
+				<object>Center</object>
+			</call>
+			
+			<call name="this.getContentPane.add">
+				<component ref="xp_ExecutePut_Button" />
+				<object>South</object>
+			</call>
+			
+			<call name="this.setSize">
+				<int>600</int>
+				<int>400</int>
+			</call>
+		
+		</XFrame>
+		
+	</uis>
+	
+</config>

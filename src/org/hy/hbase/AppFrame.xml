@@ -1,0 +1,762 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<config>
+	
+	<import name="uis"            class="java.util.ArrayList" />
+	<import name="I18N"           class="org.hy.common.I18N" />
+	<import name="iText"          class="org.hy.common.app.Param" />
+    <import name="font"           class="java.awt.Font" />
+    <import name="borderLayout"   class="java.awt.BorderLayout" />
+    <import name="flowLayout"     class="java.awt.FlowLayout" />
+    <import name="gridLayout"     class="java.awt.GridLayout" />
+    <import name="XURL"           class="java.net.URL" />
+    <import name="XPanel"         class="javax.swing.JPanel" />
+    <import name="XLayeredPane"   class="javax.swing.JLayeredPane" />
+	<import name="XSplitPane"     class="javax.swing.JSplitPane" />
+	<import name="XScrollPane"    class="javax.swing.JScrollPane" />
+    <import name="XCheckBox"      class="javax.swing.JCheckBox" />
+    <import name="XImageIcon"     class="javax.swing.ImageIcon" />
+    <import name="XList"          class="javax.swing.JList" />
+    <import name="XTable"         class="javax.swing.JTable" />
+    <import name="XTableModel"    class="javax.swing.table.DefaultTableModel" />
+    <import name="XLabel"         class="org.hy.common.ui.JLabel" />
+    <import name="XToolBar"       class="org.hy.common.ui.JToolBar" />
+    <import name="XTextField"     class="org.hy.common.ui.JTextField" />
+    <import name="XButton"        class="org.hy.common.ui.JButton" />
+    <import name="XComboBox"      class="org.hy.common.ui.JComboBox" />
+	
+	
+	
+	<uis>
+	
+		<!-- 初始化国际化语言信息 -->
+		<I18N id="I18N" this="I18N">
+		
+			<language>cn</language>
+			
+			<iText>
+				<name>titles_RowNo</name>
+				<value>行号</value>
+			</iText>
+			
+			<iText>
+				<name>titles_RowKey</name>
+				<value>行主键</value>
+			</iText>
+			
+			<iText>
+				<name>titles_FamilyName</name>
+				<value>列族名</value>
+			</iText>
+			
+			<iText>
+				<name>titles_ColumnName</name>
+				<value>字段名</value>
+			</iText>
+			
+			<iText>
+				<name>titles_ColumnValue</name>
+				<value>字段值</value>
+			</iText>
+			
+			<iText>
+				<name>titles_Timestamp</name>
+				<value>时间戳</value>
+			</iText>
+			
+		</I18N>
+		
+		
+		
+		<I18N this="I18N">
+		
+			<language>en</language>
+			
+			<iText>
+				<name>titles_RowNo</name>
+				<value>Row No</value>
+			</iText>
+			
+			<iText>
+				<name>titles_RowKey</name>
+				<value>Row Key</value>
+			</iText>
+			
+			<iText>
+				<name>titles_FamilyName</name>
+				<value>Family Name</value>
+			</iText>
+			
+			<iText>
+				<name>titles_ColumnName</name>
+				<value>Column Name</value>
+			</iText>
+			
+			<iText>
+				<name>titles_ColumnValue</name>
+				<value>Column Value</value>
+			</iText>
+			
+			<iText>
+				<name>titles_Timestamp</name>
+				<value>Timestamp</value>
+			</iText>
+		
+		</I18N>
+		
+		
+		
+		<!-- 统一设置国际化语言版本 -->
+		<I18N this="I18N">
+			<language ref="SYS_LANGUAGE" />
+		</I18N>
+		
+		
+		
+		<XLabel id="xlFontRef" />
+		<XLabel id="xlFont">
+			<font>
+				<constructor>
+					<String ref="xlFontRef.getFont.getName" />
+					<int>0</int>
+					<int>12</int>
+				</constructor>
+			</font>
+		</XLabel>
+		
+		
+		
+		<!-- 列表的标题 -->
+		<Titles id="titles" class="java.util.ArrayList">
+			<String ref="I18N.getIText(titles_RowNo)" />
+			<String ref="I18N.getIText(titles_RowKey)" />
+			<String ref="I18N.getIText(titles_FamilyName)" />
+			<String ref="I18N.getIText(titles_ColumnName)" />
+			<String ref="I18N.getIText(titles_ColumnValue)" />
+			<String ref="I18N.getIText(titles_Timestamp)" />
+			<String ref="I18N.getIText(titles_Timestamp)" />
+		</Titles>
+
+
+		
+		<!-- 列表宽度的最小的大小 -->
+		<Titles id="titles_Size" class="java.util.ArrayList">
+			<String>50</String>
+			<String>200</String>
+			<String>100</String>
+			<String>100</String>
+			<String>280</String>
+			<String>10</String>
+			<String>150</String>
+		</Titles>
+		
+		
+		
+		<!-- 列表宽度的最大的大小。-1表示不设置 -->
+		<Titles id="titles_MaxSize" class="java.util.ArrayList">
+			<String>50</String>
+			<String>-1</String>
+			<String>-1</String>
+			<String>-1</String>
+			<String>-1</String>
+			<String>10</String>
+			<String>-1</String>
+		</Titles>
+		
+		
+		
+		<!-- 工具栏按钮图标: 下一页 -->
+		<XImageIcon id="xiconNextPage">
+			<constructor>
+				<XURL>
+					<constructor>
+						<String>classpath:img/nextPage.png</String>
+					</constructor>
+				</XURL>
+			</constructor>
+			
+			<call name="this.getImage.getScaledInstance" returnID="ximageNextPage">
+				<int>24</int>
+				<int>24</int>
+				<int>1</int>                     <!-- Image.SCALE_DEFAULT -->
+			</call>
+			
+			<image ref="ximageNextPage" />
+		</XImageIcon>
+		
+		
+		
+		<!-- 工具栏按钮图标: 最后一页 -->
+		<XImageIcon id="xiconLastPage">
+			<constructor>
+				<XURL>
+					<constructor>
+						<String>classpath:img/lastPage.png</String>
+					</constructor>
+				</XURL>
+			</constructor>
+			
+			<call name="this.getImage.getScaledInstance" returnID="ximageLastPage">
+				<int>24</int>
+				<int>24</int>
+				<int>1</int>
+			</call>
+			
+			<image ref="ximageLastPage" />
+		</XImageIcon>
+		
+		
+		
+		<!-- 工具栏按钮图标: 删除 -->
+		<XImageIcon id="xiconDelete">
+			<constructor>
+				<XURL>
+					<constructor>
+						<String>classpath:img/delete.png</String>
+					</constructor>
+				</XURL>
+			</constructor>
+			
+			<call name="this.getImage.getScaledInstance" returnID="ximageDelete">
+				<int>24</int>
+				<int>24</int>
+				<int>1</int>
+			</call>
+			
+			<image ref="ximageDelete" />
+		</XImageIcon>
+		
+		
+		
+		<!-- 工具栏按钮图标: Truncate -->
+		<XImageIcon id="xiconTruncate">
+			<constructor>
+				<XURL>
+					<constructor>
+						<String>classpath:img/truncate.png</String>
+					</constructor>
+				</XURL>
+			</constructor>
+			
+			<call name="this.getImage.getScaledInstance" returnID="ximageTruncate">
+				<int>24</int>
+				<int>24</int>
+				<int>1</int>
+			</call>
+			
+			<image ref="ximageTruncate" />
+		</XImageIcon>
+		
+		
+		
+		<!-- 工具栏按钮图标: 导出 -->
+		<XImageIcon id="xiconExport">
+			<constructor>
+				<XURL>
+					<constructor>
+						<String>classpath:img/export.png</String>
+					</constructor>
+				</XURL>
+			</constructor>
+			
+			<call name="this.getImage.getScaledInstance" returnID="ximageExport">
+				<int>24</int>
+				<int>24</int>
+				<int>1</int>
+			</call>
+			
+			<image ref="ximageExport" />
+		</XImageIcon>
+		
+		
+		
+		<!-- 工具栏按钮图标: 复制编辑 -->
+		<XImageIcon id="xiconCopy">
+			<constructor>
+				<XURL>
+					<constructor>
+						<String>classpath:img/copy.png</String>
+					</constructor>
+				</XURL>
+			</constructor>
+			
+			<call name="this.getImage.getScaledInstance" returnID="ximageCopy">
+				<int>24</int>
+				<int>24</int>
+				<int>1</int>
+			</call>
+			
+			<image ref="ximageCopy" />
+		</XImageIcon>
+		
+		
+		
+		<!-- 查询工具栏面板 -->
+		<XPanel id="xpTools" setter="add">
+			
+			<layout />     <!-- 设置布局为 null -->
+			
+			<XButton id="xbNextPage">
+				<toolTipText>下一页</toolTipText>
+				<enabled>false</enabled>
+				<icon ref="xiconNextPage" />
+				
+				<call name="setBounds">
+					<int>0</int>
+					<int>0</int>
+					<int>24</int>
+					<int>24</int>
+				</call>
+				
+				<onClickTransaction>
+					<event class="org.hy.hbase.event.NextPageActionListener" />
+				</onClickTransaction>
+			</XButton>
+			
+			<XButton id="xbLastPage">
+				<toolTipText>最后一页</toolTipText>
+				<enabled>false</enabled>
+				<icon ref="xiconLastPage" />
+				
+				<call name="setBounds">
+					<int>26</int>
+					<int>0</int>
+					<int>24</int>
+					<int>24</int>
+				</call>
+				
+				<onClickTransaction>
+					<event class="org.hy.hbase.event.LastPageActionListener" />
+				</onClickTransaction>
+			</XButton>
+			
+			<XButton id="xbDelete">
+				<toolTipText>删除一条或多条记录</toolTipText>
+				<enabled>false</enabled>
+				<icon ref="xiconDelete" />
+				
+				<call name="setBounds">
+					<int>62</int>
+					<int>0</int>
+					<int>24</int>
+					<int>24</int>
+				</call>
+				
+				<onClickTransaction>
+					<event class="org.hy.hbase.event.DeleteActionListener" />
+				</onClickTransaction>
+			</XButton>
+			
+			<XButton id="xbTruncate">
+				<toolTipText>清空表的所有记录</toolTipText>
+				<enabled>false</enabled>
+				<icon ref="xiconTruncate" />
+				
+				<call name="setBounds">
+					<int>88</int>
+					<int>0</int>
+					<int>24</int>
+					<int>24</int>
+				</call>
+				
+				<onClickTransaction>
+					<event class="org.hy.hbase.event.TruncateActionListener" />
+				</onClickTransaction>
+			</XButton>
+			
+			<XButton id="xbExport">
+				<toolTipText>导出。1.结果列表选中行时，只导出选中的行； 2.否则，导出结果列表中所有的行</toolTipText>
+				<enabled>false</enabled>
+				<icon ref="xiconExport" />
+				
+				<call name="setBounds">
+					<int>124</int>
+					<int>0</int>
+					<int>24</int>
+					<int>24</int>
+				</call>
+				
+				<onClickTransaction>
+					<event class="org.hy.hbase.event.ExportActionListener" />
+				</onClickTransaction>
+			</XButton>
+			
+			<XButton id="xbCopy">
+				<toolTipText>复制编辑。选择多条信息进行编辑</toolTipText>
+				<enabled>false</enabled>
+				<icon ref="xiconCopy" />
+				
+				<call name="setBounds">
+					<int>150</int>
+					<int>0</int>
+					<int>24</int>
+					<int>24</int>
+				</call>
+				
+				<onClickTransaction>
+					<event class="org.hy.hbase.event.CopyActionListener">
+						<dialogName>xf_ExecutePut</dialogName>
+					</event>
+				</onClickTransaction>
+			</XButton>
+			
+			<!-- 提示信息 -->
+			<XLabel id="xlHintInfo">
+				<call name="setBounds">
+					<int>200</int>
+					<int>0</int>
+					<int>500</int>
+					<int>24</int>
+				</call>
+			</XLabel>
+			
+		</XPanel>
+			
+		
+		
+		<!-- 查询条件面板 -->
+		<XPanel id="xpSelect" setter="add">
+		
+			<layout>
+				<flowLayout>
+					<alignment ref="this.LEFT" />
+				</flowLayout>
+			</layout>
+
+
+			<XLabel>
+				<text>主键:</text>
+			</XLabel>
+			
+			<XTextField id="RowKey">
+				<columns>16</columns>
+				<toolTipText>行主键。可为空</toolTipText>
+			</XTextField>
+						
+			
+			<XLabel>
+				<text>列族:</text>
+			</XLabel>
+			
+			<XComboBox id="FamilyName">
+				<name>FamilyName</name>
+			
+				<call name="addItem"><String></String><String></String></call>
+				
+				<call name="addItemListener">
+					<event class="org.hy.hbase.event.SelectFamilyNameListener" />
+				</call>
+			</XComboBox>
+			
+			
+			<XLabel>
+				<text>字段:</text>
+			</XLabel>
+			
+			<XComboBox id="ColumnName">
+				<editable>true</editable>
+				<call name="addItem"><String></String><String></String></call>
+				
+				<call name="addItemListener">
+					<event class="org.hy.hbase.event.SelectColumnNameListener" />
+				</call>
+			</XComboBox>
+		
+			
+			<XLabel>
+				<text>字段值:</text>
+			</XLabel>
+			
+			<XTextField id="ColumnValue">
+				<columns>16</columns>
+				<toolTipText>字段数值。可为空</toolTipText>
+			</XTextField>
+			
+			
+			<XCheckBox id="IsLike">
+				<text>精确</text>
+				<selected>true</selected>
+				<toolTipText>可分为1.精确查询模式；2.模糊查询模式</toolTipText>
+				
+				<call name="addChangeListener">
+					<event class="org.hy.hbase.event.IsLikeActionListener" />
+				</call>
+			</XCheckBox>
+			
+		
+			<XButton id="xbSubmit">
+				<name>xbSubmit</name>
+				<text>查询</text>
+				<toolTipText>查询</toolTipText>
+				<enabled>true</enabled>
+				<onClickTransaction>
+					<event class="org.hy.hbase.event.SubmitActionListener">
+						<queryConditions submit="xpSelect" />
+					</event>
+				</onClickTransaction>
+			</XButton>
+			
+			<XButton id="xbSubmitFilter">
+				<name>xbSubmitFilter</name>
+				<text>过滤查</text>
+				<toolTipText>按条件查询的同时，对列族名及字段名有过滤性的显示记录</toolTipText>
+				<enabled>false</enabled>
+				<onClickTransaction>
+					<event class="org.hy.hbase.event.SubmitActionListener">
+						<queryConditions submit="xpSelect" />
+					</event>
+				</onClickTransaction>
+			</XButton>
+			
+		</XPanel>
+		
+
+
+		<!-- 行编辑(或添加)面板 -->
+		<XPanel id="xpEditRowInfo" setter="add">
+		
+			<layout>
+				<flowLayout>
+					<alignment ref="this.LEFT" />
+				</flowLayout>
+			</layout>
+		
+			<XLabel>
+				<text>行主键:</text>
+			</XLabel>
+			
+			<XTextField id="Edit_RowKey">
+				<columns>16</columns>
+				<toolTipText>行主键。必须有</toolTipText>
+			</XTextField>
+		
+		
+			<XLabel>
+				<text>列族名:</text>
+			</XLabel>
+			
+			<XComboBox id="Edit_FamilyName">
+				<name>Edit_FamilyName</name>
+			
+				<call name="addItem"><String></String><String></String></call>
+				
+				<!-- call name="addItemListener">
+					<event class="org.hy.hbase.event.SelectFamilyNameListener" />
+				</call -->
+			</XComboBox>
+			
+			
+			<XLabel>
+				<text>字段名:</text>
+			</XLabel>
+			
+			<XComboBox id="Edit_ColumnName">
+				<editable>true</editable>
+				<call name="addItem"><String></String><String></String></call>
+			</XComboBox>
+		
+			
+			<XLabel>
+				<text>字段值:</text>
+			</XLabel>
+			
+			<XTextField id="Edit_ColumnValue">
+				<columns>16</columns>
+				<toolTipText>字段数值。必须有</toolTipText>
+			</XTextField>
+		
+		
+			<XButton id="xbSubmitEdit">
+				<text>提交</text>
+				<toolTipText>添加或修改数据</toolTipText>
+				<enabled>true</enabled>
+				<onClickTransaction>
+					<event class="org.hy.hbase.event.EditSubmitActionListener">
+						<editDatas submit="xpEditRowInfo" />
+					</event>
+				</onClickTransaction>
+			</XButton>
+		</XPanel>
+		
+		
+		
+		<!-- 查询结果列表 -->
+		<XTable id="xtDataList">
+			<showGrid>true</showGrid>
+			<rowSelectionAllowed>true</rowSelectionAllowed>
+			<selectionMode>1</selectionMode>           <!-- ListSelectionModel.SINGLE_INTERVAL_SELECTION -->
+			<autoResizeMode>0</autoResizeMode>
+			
+			<call name="this.getSelectionModel.addListSelectionListener">
+				<event class="org.hy.hbase.event.ResultsSelectionListener" />
+			</call>
+		</XTable>
+		
+		
+		
+		<!-- 查询结果滚动面板 -->
+		<XScrollPane id="xpResultInfo" setter="add">
+			
+			<horizontalScrollBarPolicy>30</horizontalScrollBarPolicy>
+			
+			<call name="this.getViewport.add">
+				<component ref="xtDataList" />
+			</call>
+		
+		</XScrollPane>	
+		
+		
+		
+		<!-- 工具栏与查询结果的分割 -->
+		<XSplitPane id="xsToolsResult">
+			<orientation ref="this.VERTICAL_SPLIT" />
+			<dividerSize>0</dividerSize>
+			<oneTouchExpandable>false</oneTouchExpandable>
+			
+			<call name="setDividerLocation">
+				<int>25</int>
+			</call>
+			
+			<call name="add">
+				<component ref="xpTools" />
+				<object ref="this.TOP" />
+			</call>
+			
+			<call name="add">
+				<component ref="xpResultInfo" />
+				<object ref="this.BOTTOM" />
+			</call>
+		</XSplitPane>
+		
+		
+		
+				
+		<!-- 查询结果上下分割面板(结果与行编辑面板的分割) -->
+		<XPanel id="xpResultSplit">
+		
+			<layout>
+				<borderLayout />
+			</layout>
+			
+			<call name="add">
+				<String ref="borderLayout.CENTER" />
+				<component ref="xsToolsResult" />
+			</call>
+			
+			<call name="add">
+				<String ref="borderLayout.SOUTH" />
+				<component ref="xpEditRowInfo" />
+			</call>
+		
+		</XPanel>
+		
+		
+		
+		<!-- 主窗口中的上下分割面板(查询条件与结果分割) -->
+		<XSplitPane id="xsMainSplit">
+		
+			<orientation ref="this.VERTICAL_SPLIT" />
+			<dividerSize>3</dividerSize>
+			<oneTouchExpandable>false</oneTouchExpandable>
+			
+			<call name="setDividerLocation">
+				<int>38</int>
+			</call>
+			
+			<call name="add">
+				<component ref="xpSelect" />
+				<object ref="this.TOP" />
+			</call>
+			
+			<call name="add">
+				<component ref="xpResultSplit" />
+				<object ref="this.BOTTOM" />
+			</call>
+			
+		</XSplitPane>
+		
+		
+		
+		<XList id="xlTables">
+			<selectionMode>1</selectionMode>
+			<fixedCellHeight>24</fixedCellHeight>
+			
+			<call name="addListSelectionListener">
+				<event class="org.hy.hbase.event.SelectTableInfoListener" />
+			</call>
+		</XList>
+		
+		
+		
+		<XScrollPane id="xsTables" setter="add">
+			
+			<call name="this.getViewport.add">
+				<component ref="xlTables" />
+			</call>
+		
+		</XScrollPane>
+		
+		
+		
+		<!-- 状态栏 -->
+		<XPanel id="xtMainStatusBar" setter="add">
+		
+			<layout>
+				<borderLayout />
+			</layout>
+			
+			<XLabel>
+				<text>欢迎使用</text>
+			</XLabel>
+			
+		</XPanel>
+		
+		
+		
+		<!-- 主窗口中的左右分割面板(数据库表的表列与右则分割) -->
+		<XSplitPane id="xsTablesSplit">
+		
+			<orientation ref="this.HORIZONTAL_SPLIT" />
+			<dividerSize>3</dividerSize>
+			<oneTouchExpandable>false</oneTouchExpandable>
+			
+			<call name="setDividerLocation">
+				<int>180</int>
+			</call>
+			
+			<call name="add">
+				<component ref="xsTables" />
+				<object ref="this.LEFT" />
+			</call>
+			
+			<call name="add">
+				<component ref="xsMainSplit" />
+				<object ref="this.RIGHT" />
+			</call>
+			
+		</XSplitPane>
+		
+		
+		
+		<!-- 主面板 -->
+		<XPanel id="xpMain">
+			
+			<layout>
+				<borderLayout />
+			</layout>
+			
+			<call name="add">
+				<String ref="borderLayout.CENTER" />
+				<component ref="xsTablesSplit" />
+			</call>
+			
+			<call name="add">
+				<String ref="borderLayout.SOUTH" />
+				<component ref="xtMainStatusBar" />
+			</call>
+			
+		</XPanel>
+		
+	</uis>
+	
+</config>
