@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.net.URI;
 
 import org.hy.common.ui.JButtonOnClickTransaction;
+import org.hy.hbase.AppMain;
 
 
 
@@ -24,7 +25,7 @@ public class MenuSupportAction extends BaseEvent implements JButtonOnClickTransa
     {
         try
         {
-            URI     v_URI     = URI.create("https://github.com/HY-ZhengWei/HBaseClient");
+            URI     v_URI     = URI.create(AppMain.$SourceCode);
             Desktop v_Desktop = Desktop.getDesktop();
             
             // 判断系统桌面是否支持要执行的功能

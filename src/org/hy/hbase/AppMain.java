@@ -28,11 +28,13 @@ import org.hy.common.xml.XJava;
  */
 public class AppMain
 {
-    private final static String $VersionNo = "v1.6.0";
+    public  static final String $VersionNo  = "v1.6.0";
     
-    private static HBase        $HBase     = null;
+    public  static final String $SourceCode = "https://github.com/HY-ZhengWei/HBaseClient";  
     
-    private static FileHelp     $FileHelp  = new FileHelp();
+    private static HBase        $HBase      = null;
+    
+    private static FileHelp     $FileHelp   = new FileHelp();
     
     
     
@@ -293,7 +295,8 @@ public class AppMain
     
     private static String showVersionInfo()
     {
-        return "\n" + $VersionNo + " \nHY.ZhengWei@qq.com\n";
+        return "\n" + $VersionNo + " \nHY.ZhengWei@qq.com\n"
+             + "Support：" + $SourceCode + "\n";
     }
     
     
