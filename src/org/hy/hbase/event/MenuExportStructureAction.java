@@ -41,6 +41,17 @@ public class MenuExportStructureAction extends BaseEvent implements JButtonOnCli
         JFileChooser v_FileChooser = new JFileChooser();
         v_FileChooser.setSelectedFile(v_SaveFile);
         
+        try
+        {
+            // 不知道为什么非要sleep一下才再在多次反复打开对话窗口时不出异常，保证每次都能打开对话窗口。
+            // 测试环境：Mac 10.12.5、Java 1.6、Eclipse 4.3.2
+            Thread.sleep(10);
+        }
+        catch (Exception exce)
+        {
+            // Nothing.
+        }
+        
         int v_Result = v_FileChooser.showSaveDialog(this.getAppFrame());
         if ( v_Result == JFileChooser.APPROVE_OPTION )
         {

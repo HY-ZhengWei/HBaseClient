@@ -70,7 +70,19 @@
 				<name>xmenuExportStructureData</name>
 				<value>导出表结构+数据</value>
 			</iText>
-						
+			
+			
+			
+			<iText>
+				<name>xmenuHelp</name>
+				<value>帮助(H)</value>
+			</iText>
+			
+			<iText>
+				<name>xmenuSupport</name>
+				<value>支持与源码</value>
+			</iText>
+			
 		</I18N>
 		
 		
@@ -124,6 +136,18 @@
 			<iText>
 				<name>xmenuExportStructure</name>
 				<value>Export Table Structure</value>
+			</iText>
+			
+			
+			
+			<iText>
+				<name>xmenuHelp</name>
+				<value>Help(H)</value>
+			</iText>
+			
+			<iText>
+				<name>xmenuSupport</name>
+				<value>Support and Source Code</value>
 			</iText>
 						
 		</I18N>
@@ -248,6 +272,25 @@
 					
 					<onClickTransaction>
 						<event class="org.hy.hbase.event.MenuExportStructureDataAction" />
+					</onClickTransaction>
+				</XMenuItem>
+				
+			</XMenu>
+			
+			
+			
+			<!-- 帮助 -->
+			<XMenu setter="addMenuItem">
+			
+				<text ref="I18N.getIText(xmenuHelp)" />
+				<mnemonicStr>H</mnemonicStr>
+				
+				<!-- 支持与源码 -->
+				<XMenuItem id="xmenuSupport">
+					<text ref="I18N.getIText(xmenuSupport)" />
+					
+					<onClickTransaction>
+						<event class="org.hy.hbase.event.MenuSupportAction" />
 					</onClickTransaction>
 				</XMenuItem>
 				

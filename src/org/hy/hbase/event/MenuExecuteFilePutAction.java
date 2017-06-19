@@ -29,8 +29,19 @@ public class MenuExecuteFilePutAction extends BaseEvent implements JButtonOnClic
         
         v_FileChooser.setDialogTitle("请选择文件或文件夹");
         v_FileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-        int v_Result = v_FileChooser.showOpenDialog(this.getAppFrame());
         
+        try
+        {
+            // 不知道为什么非要sleep一下才再在多次反复打开对话窗口时不出异常，保证每次都能打开对话窗口。
+            // 测试环境：Mac 10.12.5、Java 1.6、Eclipse 4.3.2
+            Thread.sleep(10);
+        }
+        catch (Exception exce)
+        {
+            // Nothing.
+        }
+        
+        int v_Result = v_FileChooser.showOpenDialog(this.getAppFrame());
         if ( v_Result == JFileChooser.APPROVE_OPTION )
         {
             File v_File = v_FileChooser.getSelectedFile();
