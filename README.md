@@ -5,33 +5,51 @@ HBase客户端数据管理软件
 ![image](images/HBaseClient_Main.png)
 
 * [概要说明](#概要说明)
-* 下载
+* [下载](#下载)
 * [安装运行](#安装运行)
 
 
 
 概要说明
 ------
+* 类似PL/SQL，是一个HBase数据库的客户数据管理软件。
+* 可视化界面操作。
+	* 表的定义、编辑、删除；
+	* 数据的添加、编辑、删除；
+	* 主键的精确；关键字的模糊查询、过滤查询;
+	* 数据查询结果的分页显示操作；
+	* 数据的全部清空、多条删除、多条复制；
+	* 表结构的导出；表结构及数据的导出；
 
+
+
+下载
+------
+| date | version | support |
+|:----------:|:------:|:-------- |
+| 2017-06-19 | [v1.6.0](发布版本/v1.6/HBaseClient_1.6.tar.gz) | 支持HBase 2.x |
 
 
 
 安装运行
 ------
-1. 设置系统环境变量
+1. 运行要求
+   Java 1.8+
+   
+2. 设置系统环境变量
    在文件 vi ~/.profile 中添加如下内容：
 ```sh
    export HBASE_CLIENT_HOME=安装HBaseClient所有主目录路径
    export PATH=$PATH:$HBASE_CLIENT_HOME
 ```
 
-2. 运行HBaseClient
+3. 运行HBaseClient
 ```sh
    # ip为管理HBase数据库的Zookeeper的IP地址，一般情况就是HBase数据库的IP地址。
    hbaseclient ip=127.0.0.1 -window
 ```
 
-3. HBaseClient显示帮助信息
+4. HBaseClient显示帮助信息
 ```sh
    hbaseclient /?
 ```
