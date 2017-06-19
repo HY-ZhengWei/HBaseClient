@@ -37,7 +37,7 @@ HBase客户端数据管理软件
 ------
 | date | version | support |
 |:----------:|:------:|:-------- |
-| 2017-06-19 | [v1.6.0](发布版本/v1.6/HBaseClient_1.6.tar.gz) | 支持HBase 2.x |
+| 2017-06-19 | [v1.6.0](发布版本/v1.6/HBaseClient_1.6.tar.gz) | 支持HBase 1.x |
 
 
 
