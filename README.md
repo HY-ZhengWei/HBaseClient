@@ -36,7 +36,7 @@ HBase客户端数据管理软件
 下载
 ------
 | date | version | size | support |
-|:----------:|:------:||:------:|:-------- |
+|:----------:|:------:|:------:|:-------- |
 | 2017-06-19 | [v1.6.0 for linux](发布版本/v1.6/HBaseClient_1.6.tar.gz)     | 75.7M | 支持HBase 1.x |
 | 2014-06-12 | [v1.5.0 for linux](发布版本/v1.5/HBaseClient_1.5.tar.gz)     | 22.7M | 支持HBase 0.98.x |
 | 2014-06-12 | [v1.5.0 for Window 32](发布版本/v1.5/HBaseClient_1.5_32.exe) | 24.9M | 支持HBase 0.98.x |
