@@ -3,6 +3,15 @@ HBase客户端数据管理软件
 
 
 ![image](images/HBaseClient_Main.png)
+
+* [概要说明](#概要说明)
+* 下载
+* [安装运行](#安装运行)
+
+
+
+概要说明
+------
 HBaseClient -- 客户端工具
 	1: put支持中文
 	2: 支持文件形式的批量put命令执行
@@ -24,6 +33,21 @@ HBaseClient -- 客户端工具
 	/v         显示版本信息
 	/?         显示帮助信息
 
+
+
+安装运行
+------
+1. 设置系统环境变量
+   在文件 vi ~/.profile 中添加如下内容：
+```sh
+   export HBASE_CLIENT_HOME=安装HBaseClient所有主目录路径
+   export PATH=$PATH:$HBASE_CLIENT_HOME
+```
+
+2. 运行HBaseClient
+```sh
+	hbaseclient ip=127.0.0.1 -window
+```
 
 ---
 #### 本项目引用Jar包，其源码链接如下
