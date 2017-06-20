@@ -13,6 +13,7 @@ HBase客户端数据管理软件
 概要说明
 ------
 * 类似PL/SQL，是一个HBase数据库的客户端数据管理软件。是免费开源的软件。
+* 基于XJava，使用xml配置文件绘制可视化界面。
 * 可视化界面操作
 	* 表
 		* 表的定义、编辑、删除；
@@ -62,13 +63,21 @@ HBase客户端数据管理软件
    export PATH=$PATH:$HBASE_CLIENT_HOME
 ```
 
-3. 运行HBaseClient
+3. 设置Hosts文件
+   在文件 vi /etc/hosts 中添加HBase集群中所有服务器的名称与IP地址
+```sh
+   127.0.0.1   master
+   127.0.0.1   slave01
+   127.0.0.1   slave02
+```
+
+4. 运行HBaseClient
 ```sh
    # ip为管理HBase数据库的Zookeeper的IP地址，一般情况就是HBase数据库的IP地址。
    hbaseclient ip=127.0.0.1 -window
 ```
 
-4. HBaseClient显示帮助信息
+5. HBaseClient显示帮助信息
 ```sh
    hbaseclient /?
 ```
