@@ -6,8 +6,8 @@ HBase客户端数据管理软件
 
 * [概要说明](#概要说明)
 * [下载](#下载)
-* [安装运行 for linux](#安装运行 for linux)
-* [安装运行 for window](#安装运行 for window)
+* [安装运行 for linux](#安装运行linux)
+* [安装运行 for window](#安装运行window)
 
 
 
@@ -53,7 +53,7 @@ HBase客户端数据管理软件
 
 
 
-安装运行 for linux
+安装运行linux
 ------
 1. 运行要求
    * HBaseClient 1.6.0：Java 1.7+
@@ -108,7 +108,7 @@ HBase客户端数据管理软件
 
 
 
-安装运行 for window
+安装运行window
 ------
 
 ---
