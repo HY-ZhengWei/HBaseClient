@@ -128,6 +128,7 @@ HBase客户端数据管理软件
 3. 创建快捷方式
    
    创建一个HBaseClient.exe的快捷方法，并按下图设置IP
+   
 ![image](images/HBaseClient_ForWindow_Shortcut.png)
    
    ip为管理HBase数据库的Zookeeper的IP地址，一般情况就是HBase数据库的IP地址。
