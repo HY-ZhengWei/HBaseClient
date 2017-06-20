@@ -110,6 +110,27 @@ HBase客户端数据管理软件
 
 安装运行window
 ------
+1. 运行要求
+   * HBaseClient 1.6.0：Java 1.7+
+   * HBaseClient 1.5.0：Java 1.6+
+   
+2. 设置Hosts文件
+   在文件 c:\windows\System32\drivers\etc\hosts 中添加HBase集群中所有服务器的名称与IP地址
+```sh
+   127.0.0.1   master
+   127.0.0.1   slave01
+   127.0.0.1   slave02
+```
+
+3. 创建快捷方式
+   创建一个HBaseClient.exe的快捷方法，并按下图设置IP
+![image](images/HBaseClient_ForWindow_Shortcut.png)
+   ip为管理HBase数据库的Zookeeper的IP地址，一般情况就是HBase数据库的IP地址。
+
+
+4. 运行HBaseClient
+   双击上面创建好的快捷方式运行HBaseClient
+
 
 ---
 #### 本项目引用Jar包，其源码链接如下
