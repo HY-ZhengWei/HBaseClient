@@ -213,6 +213,7 @@ public class AppFrame extends JFrame
         v_XLHintInfo.setText(i_HintInfo);
         v_XLHintInfo.setForeground(i_Color);
         v_XLHintInfo.repaint();
+        this.revalidate();
     }
     
     
