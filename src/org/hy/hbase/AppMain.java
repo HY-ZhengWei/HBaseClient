@@ -28,7 +28,7 @@ import org.hy.common.xml.XJava;
  */
 public class AppMain
 {
-    public  static final String $VersionNo  = "v1.6.0";
+    public  static final String $VersionNo  = "v1.6.1";
     
     public  static final String $SourceCode = "https://github.com/HY-ZhengWei/HBaseClient";  
     
@@ -168,7 +168,7 @@ public class AppMain
             
             try
             {
-                executes($FileHelp.getContent(i_File ,Help.NVL(v_FileType ,"GBK")));
+                executes($FileHelp.getContent(i_File ,Help.NVL(v_FileType ,"UTF-8") ,true));
             }
             catch (Exception exce)
             {
@@ -179,28 +179,54 @@ public class AppMain
     
     
     
+    /**
+     * 批量执行命令（以回车分隔）
+     * 
+     * @author      ZhengWei(HY)
+     * @version     v1.0
+     *              v2.0  2018-05-23  1. 添加Create创建表命令的解释
+     *                                2. 添加Drop删除表命令的解释
+     *                                3. 添加Disable表失效命令的解释
+     *                                4. 添加Truncate清空表命令的解释
+     *                                5. 添加Delete删除列、删除列簇、删除行命令的解释
+     *
+     * @param i_Commands
+     */
     public static void executes(String i_Commands)
     {
-        String [] v_Commands = i_Commands.split("put");
+        String [] v_Commands = i_Commands.split("\n");
         int       v_Count    = 0;
         
         for (int i=0; i<v_Commands.length; i++)
         {
-            if ( Help.isNull(v_Commands[i]) )
+            String v_CmdData = v_Commands[i].trim();
+            
+            if ( Help.isNull(v_CmdData) )
             {
-                
+                continue;
             }
-            else
+            
+            String [] v_CmdDataArr = v_CmdData.split(" "); 
+            if ( v_CmdDataArr.length < 2 )
             {
-                String [] v_Params = v_Commands[i].split(",");
+                continue;
+            }
+            
+            String v_Cmd  = v_CmdDataArr[0].toLowerCase();
+            String v_Data = v_CmdData.substring(v_Cmd.length() + 1).trim();
+            
+            // Put 命令的解释
+            if ( "put".equals(v_Cmd) )
+            {
+                String [] v_Params = v_Data.split(",");
                 String    v_Value  = "";
                 
                 if ( v_Params.length >= 4 )
                 {
-                    String v_TableName  = v_Params[0].trim().replaceAll("'", "");
-                    String v_RowKey     = v_Params[1].trim().replaceAll("'", "");
-                    String v_FamilyName = v_Params[2].trim().replaceAll("'", "").split(":")[0];
-                    String v_ColumnName = v_Params[2].trim().replaceAll("'", "").split(":")[1];
+                    String v_TableName  = StringHelp.trim(v_Params[0].trim() ,"'");
+                    String v_RowKey     = StringHelp.trim(v_Params[1].trim() ,"'");
+                    String v_FamilyName = StringHelp.trim(v_Params[2].trim() ,"'").split(":")[0];
+                    String v_ColumnName = StringHelp.trim(v_Params[2].trim() ,"'").split(":")[1];
                     
                     for (int x=3; x<v_Params.length; x++)
                     {
@@ -213,7 +239,7 @@ public class AppMain
                             v_Value = v_Value + "," + v_Params[x];
                         }
                     }
-                    v_Value = v_Value.trim().replaceAll("'", "").replaceAll(";", "");
+                    v_Value = StringHelp.trim(v_Value.trim() ,";" ,"'");
                     
                     $HBase.update(v_TableName
                                  ,v_RowKey
@@ -229,7 +255,75 @@ public class AppMain
                 }
                 else
                 {
-                    System.out.println("\n-- Error: " + v_Commands[i] + "\n");
+                    System.out.println("\n-- Put Error: " + v_CmdData + "\n");
+                }
+            }
+            // Create 创建表命令的解释
+            else if ( "create".equals(v_Cmd) )
+            {
+                String [] v_Params = StringHelp.trim(v_Data ,";").replaceAll("'" ,"").split(",");
+                
+                if ( v_Params.length >= 2 )
+                {
+                    String v_TableName = v_Params[0];
+                    $HBase.createTable(v_TableName ,Help.toList(v_Params).subList(1 ,v_Params.length));
+                    
+                    System.out.println("-- " + StringHelp.rpad(++v_Count ,4 ," ") + ": " + v_CmdData);
+                }
+                else
+                {
+                    System.out.println("\n-- Create Error: " + v_CmdData + "\n");
+                }
+            }
+            // Drop 删除表命令的解释
+            else if ( "drop".equals(v_Cmd) )
+            {
+                $HBase.dropTable(StringHelp.trim(v_Data ,";" ,"'"));
+            }
+            // Disable 表失效命令的解释
+            else if ( "disable".equals(v_Cmd) )
+            {
+                $HBase.disableTable(StringHelp.trim(v_Data ,";" ,"'"));
+            }
+            // Truncate 清空表命令的解释
+            else if ( "truncate".equals(v_Cmd) )
+            {
+                $HBase.disableTable(StringHelp.trim(v_Data ,";" ,"'"));
+            }
+            // Delete 删除列、删除列簇、删除行命令的解释
+            else if ( "delete".equals(v_Cmd) )
+            {
+                String [] v_Params = StringHelp.trim(v_Data ,";").split(",");
+                
+                if ( v_Params.length >= 2 )
+                {
+                    String v_TableName = StringHelp.trim(v_Params[0] ,"'");
+                    String v_RowKey    = StringHelp.trim(v_Params[1] ,"'");
+                    
+                    if ( v_Params.length >= 3 )
+                    {
+                        String [] v_FamilyColumn = StringHelp.trim(v_Params[2] ,"'").split(":");
+                        
+                        if ( v_FamilyColumn.length == 1 )
+                        {
+                            // 删除列簇
+                            $HBase.delete(v_TableName ,v_RowKey ,v_FamilyColumn[0]);
+                        }
+                        else if ( v_FamilyColumn.length >= 2 )
+                        {
+                            // 删除列
+                            $HBase.delete(v_TableName ,v_RowKey ,v_FamilyColumn[0] ,v_FamilyColumn[1]);
+                        }
+                    }
+                    else
+                    {
+                        // 删除行
+                        $HBase.delete(v_TableName ,v_RowKey);
+                    }
+                }
+                else
+                {
+                    System.out.println("\n-- Delete Error: " + v_CmdData + "\n");
                 }
             }
         }
@@ -315,12 +409,12 @@ public class AppMain
         v_Buffer.append("\n\t").append("6: 支持图形化界面管理");
         v_Buffer.append("\n");
         v_Buffer.append("\n命令格式：");
-        v_Buffer.append("\n\tHBaseClient <IP=xxx> <[File=xxx [FileType=GBK]] | [cmd=xxx]> [-window]");
+        v_Buffer.append("\n\tHBaseClient <IP=xxx> <[File=xxx [FileType=UTF-8]] | [cmd=xxx]> [-window]");
         v_Buffer.append("\n");
         v_Buffer.append("\n命令参数说明：");
         v_Buffer.append("\n\t").append("IP         ").append("HBase数据库地址");
         v_Buffer.append("\n\t").append("File       ").append("加载命令文件的路径或目录的路径");
-        v_Buffer.append("\n\t").append("FileType   ").append("加载命令文件的编码格式。可自动识别。当识别不到时，默认为GBK");
+        v_Buffer.append("\n\t").append("FileType   ").append("加载命令文件的编码格式。可自动识别。当识别不到时，默认为UTF-8");
         v_Buffer.append("\n\t").append("CMD        ").append("加载命令字符");
         v_Buffer.append("\n\t").append("Language   ").append("选择语言。cn:简体中文、 en:English");
         v_Buffer.append("\n\t").append("-window    ").append("启动图形化管理界面");

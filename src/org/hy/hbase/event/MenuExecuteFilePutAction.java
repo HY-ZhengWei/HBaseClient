@@ -21,14 +21,20 @@ import org.hy.hbase.AppMain;
  */
 public class MenuExecuteFilePutAction extends BaseEvent implements JButtonOnClickTransaction
 {
+    private JFileChooser fileChooser;
+    
+    
 
     @Override
     public void onClick(ActionEvent arg0)
     {
-        JFileChooser v_FileChooser = new JFileChooser();
+        if ( this.fileChooser == null )
+        {
+            this.fileChooser = new JFileChooser();
+        }
         
-        v_FileChooser.setDialogTitle("请选择文件或文件夹");
-        v_FileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+        this.fileChooser.setDialogTitle("请选择文件或文件夹");
+        this.fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
         
         try
         {
@@ -41,10 +47,10 @@ public class MenuExecuteFilePutAction extends BaseEvent implements JButtonOnClic
             // Nothing.
         }
         
-        int v_Result = v_FileChooser.showOpenDialog(this.getAppFrame());
+        int v_Result = this.fileChooser.showOpenDialog(this.getAppFrame());
         if ( v_Result == JFileChooser.APPROVE_OPTION )
         {
-            File v_File = v_FileChooser.getSelectedFile();
+            File v_File = this.fileChooser.getSelectedFile();
             
             if (  !v_File.exists() 
               || (!v_File.isDirectory() && !v_File.isFile()) )
@@ -53,7 +59,7 @@ public class MenuExecuteFilePutAction extends BaseEvent implements JButtonOnClic
                 return;
             }
             
-            AppMain.exeutesFile(v_File ,null);
+            AppMain.exeutesFile(v_File ,"UTF-8");
             
             this.getAppFrame().showHintInfo("执行完成，请查看控制台日志" ,Color.BLUE);
         }

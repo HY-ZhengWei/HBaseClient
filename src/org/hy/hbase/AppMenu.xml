@@ -53,7 +53,7 @@
 			
 			<iText>
 				<name>xmenuExecuteFilePut</name>
-				<value>文件批量put命令导入</value>
+				<value>文件批量命令执行</value>
 			</iText>
 			
 			<iText>

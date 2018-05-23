@@ -1,5 +1,6 @@
-Manifest-Version: 1.6.0
+Manifest-Version: 1.6.1
 Created-By: HY.ZhengWei@qq.com  2014-05
-Specification-Version: 1.6.0  2018-04-28
+Specification-Version: 1.6.1  2018-05-23
 Main-Class: org.hy.hbase.AppMain
 SourceCode: https://github.com/HY-ZhengWei/HBaseClient
+Build-JDK: 1.6
