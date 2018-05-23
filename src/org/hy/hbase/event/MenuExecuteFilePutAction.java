@@ -21,6 +21,7 @@ import org.hy.hbase.AppMain;
  */
 public class MenuExecuteFilePutAction extends BaseEvent implements JButtonOnClickTransaction
 {
+    
     private JFileChooser fileChooser;
     
     

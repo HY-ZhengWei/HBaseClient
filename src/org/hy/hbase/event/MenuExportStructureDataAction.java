@@ -28,6 +28,10 @@ import org.hy.common.ui.JButtonOnClickTransaction;
  */
 public class MenuExportStructureDataAction extends BaseEvent implements JButtonOnClickTransaction
 {
+    
+    private JFileChooser fileChooser;
+    
+    
 
     @Override
     public void onClick(ActionEvent arg0)
@@ -40,10 +44,13 @@ public class MenuExportStructureDataAction extends BaseEvent implements JButtonO
             return;
         }
         
+        if ( this.fileChooser == null )
+        {
+            this.fileChooser = new JFileChooser();
+        }
         
-        File         v_SaveFile    = new File(this.getHBase().getHBaseIP() + ".txt");
-        JFileChooser v_FileChooser = new JFileChooser();
-        v_FileChooser.setSelectedFile(v_SaveFile);
+        File v_SaveFile = new File(this.getHBase().getHBaseIP() + ".txt");
+        this.fileChooser.setSelectedFile(v_SaveFile);
         
         try
         {
@@ -56,10 +63,10 @@ public class MenuExportStructureDataAction extends BaseEvent implements JButtonO
             // Nothing.
         }
         
-        int v_Result = v_FileChooser.showSaveDialog(this.getAppFrame());
+        int v_Result = this.fileChooser.showSaveDialog(this.getAppFrame());
         if ( v_Result == JFileChooser.APPROVE_OPTION )
         {
-            v_SaveFile = v_FileChooser.getSelectedFile();
+            v_SaveFile = this.fileChooser.getSelectedFile();
             
             this.writeContents(v_TableNames ,v_SaveFile);
         }
