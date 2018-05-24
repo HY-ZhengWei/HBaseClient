@@ -53,18 +53,15 @@
 	<classpathentry kind="lib" path="lib/hbase-annotations-1.2.5.jar"/>
 	<classpathentry kind="lib" path="lib/hbase-client-1.2.5.jar"/>
 	<classpathentry kind="lib" path="lib/hbase-common-1.2.5.jar"/>
-	<classpathentry kind="lib" path="lib/hbase-examples-1.2.5.jar"/>
 	<classpathentry kind="lib" path="lib/hbase-external-blockcache-1.2.5.jar"/>
 	<classpathentry kind="lib" path="lib/hbase-hadoop-compat-1.2.5.jar"/>
 	<classpathentry kind="lib" path="lib/hbase-hadoop2-compat-1.2.5.jar"/>
-	<classpathentry kind="lib" path="lib/hbase-it-1.2.5-tests.jar"/>
 	<classpathentry kind="lib" path="lib/hbase-it-1.2.5.jar"/>
 	<classpathentry kind="lib" path="lib/hbase-prefix-tree-1.2.5.jar"/>
 	<classpathentry kind="lib" path="lib/hbase-procedure-1.2.5.jar"/>
 	<classpathentry kind="lib" path="lib/hbase-protocol-1.2.5.jar"/>
 	<classpathentry kind="lib" path="lib/hbase-resource-bundle-1.2.5.jar"/>
 	<classpathentry kind="lib" path="lib/hbase-rest-1.2.5.jar"/>
-	<classpathentry kind="lib" path="lib/hbase-server-1.2.5-tests.jar"/>
 	<classpathentry kind="lib" path="lib/hbase-server-1.2.5.jar"/>
 	<classpathentry kind="lib" path="lib/hbase-shell-1.2.5.jar"/>
 	<classpathentry kind="lib" path="lib/hbase-thrift-1.2.5.jar"/>
