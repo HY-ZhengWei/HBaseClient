@@ -1,0 +1,4 @@
+#!/bin/sh
+
+
+java -Djava.ext.dirs=$HBASE_CLIENT_HOME/lib org.hy.hbase.AppMain $1 $2 $3 $4 $5 $6 $7 $8 $9
