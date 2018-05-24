@@ -44,7 +44,7 @@ HBase客户端数据管理软件
 ------
 | date | version | size | support |
 |:----------:|:------ |:------:|:-------- |
-| 2018-05-24 | [v1.6.1 for linux](https://github.com/HY-ZhengWei/HBaseClient-Download/blob/master/%E5%8F%91%E5%B8%83%E7%89%88%E6%9C%AC/v1.6.1/HBaseClient_1.6.1.tar.gz)     | 75.7M | 支持HBase 1.x |
+| 2018-05-24 | [v1.6.1 for linux](https://github.com/HY-ZhengWei/HBaseClient-Download/blob/master/%E5%8F%91%E5%B8%83%E7%89%88%E6%9C%AC/v1.6.1/HBaseClient_1.6.1.zip)     | 65.9M | 支持HBase 1.x |
 | 2018-05-24 | [v1.6.1 for Window 32](https://github.com/HY-ZhengWei/HBaseClient-Download/blob/master/%E5%8F%91%E5%B8%83%E7%89%88%E6%9C%AC/v1.6.1/HBaseClient_1.6.1_32.exe) | 70.1M | 支持HBase 1.x |
 | 2018-05-24 | [v1.6.1 for Window 64](https://github.com/HY-ZhengWei/HBaseClient-Download/blob/master/%E5%8F%91%E5%B8%83%E7%89%88%E6%9C%AC/v1.6.1/HBaseClient_1.6.1_64.exe) | 70.2M | 支持HBase 1.x |
 | 2017-06-19 | [v1.6.0 for linux](https://github.com/HY-ZhengWei/HBaseClient-Download/blob/master/%E5%8F%91%E5%B8%83%E7%89%88%E6%9C%AC/v1.6/HBaseClient_1.6.tar.gz)     | 75.7M | 支持HBase 1.x |
