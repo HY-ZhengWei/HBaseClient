@@ -44,12 +44,12 @@ HBase客户端数据管理软件
 ------
 | date | version | size | support |
 |:----------:|:------ |:------:|:-------- |
-| 2017-06-19 | [v1.6.0 for linux](发布版本/v1.6/HBaseClient_1.6.tar.gz)     | 75.7M | 支持HBase 1.x |
-| 2017-06-20 | [v1.6.0 for Window 32](发布版本/v1.6/HBaseClient_1.6_32.exe) | 83.5M | 支持HBase 1.x |
-| 2017-06-20 | [v1.6.0 for Window 64](发布版本/v1.6/HBaseClient_1.6_64.exe) | 83.5M | 支持HBase 1.x |
-| 2014-06-12 | [v1.5.0 for linux](发布版本/v1.5/HBaseClient_1.5.tar.gz)     | 22.7M | 支持HBase 0.98.x |
-| 2014-06-12 | [v1.5.0 for Window 32](发布版本/v1.5/HBaseClient_1.5_32.exe) | 24.9M | 支持HBase 0.98.x |
-| 2014-06-12 | [v1.5.0 for Window 64](发布版本/v1.5/HBaseClient_1.5_64.exe) | 24.9M | 支持HBase 0.98.x |
+| 2017-06-19 | [v1.6.0 for linux](https://github.com/HY-ZhengWei/HBaseClient-Download/blob/master/%E5%8F%91%E5%B8%83%E7%89%88%E6%9C%AC/v1.6/HBaseClient_1.6.tar.gz)     | 75.7M | 支持HBase 1.x |
+| 2017-06-20 | [v1.6.0 for Window 32](https://github.com/HY-ZhengWei/HBaseClient-Download/blob/master/%E5%8F%91%E5%B8%83%E7%89%88%E6%9C%AC/v1.6/HBaseClient_1.6_32.exe) | 83.5M | 支持HBase 1.x |
+| 2017-06-20 | [v1.6.0 for Window 64](https://github.com/HY-ZhengWei/HBaseClient-Download/blob/master/%E5%8F%91%E5%B8%83%E7%89%88%E6%9C%AC/v1.6/HBaseClient_1.6_64.exe) | 83.5M | 支持HBase 1.x |
+| 2014-06-12 | [v1.5.0 for linux](https://github.com/HY-ZhengWei/HBaseClient-Download/blob/master/%E5%8F%91%E5%B8%83%E7%89%88%E6%9C%AC/v1.5/HBaseClient_1.5.tar.gz)     | 22.7M | 支持HBase 0.98.x |
+| 2014-06-12 | [v1.5.0 for Window 32](https://github.com/HY-ZhengWei/HBaseClient-Download/blob/master/%E5%8F%91%E5%B8%83%E7%89%88%E6%9C%AC/v1.5/HBaseClient_1.5_32.exe) | 24.9M | 支持HBase 0.98.x |
+| 2014-06-12 | [v1.5.0 for Window 64](https://github.com/HY-ZhengWei/HBaseClient-Download/blob/master/%E5%8F%91%E5%B8%83%E7%89%88%E6%9C%AC/v1.5/HBaseClient_1.5_64.exe) | 24.9M | 支持HBase 0.98.x |
 
 
 
@@ -96,7 +96,7 @@ HBase客户端数据管理软件
 	* 6: 支持图形化界面管理
 
 * 命令格式：
-	* HBaseClient <IP=xxx> <[File=xxx [FileType=GBK]] | [cmd=xxx]> [-window]
+	* HBaseClient <IP=xxx> <[File=xxx [FileType=UTF-8]] | [cmd=xxx]> [-window]
 
 * 命令参数说明：
 	* IP         HBase数据库地址
